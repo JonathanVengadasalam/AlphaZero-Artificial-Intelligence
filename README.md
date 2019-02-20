@@ -9,4 +9,5 @@ I will use :
 - the dimensions reduction method.
 - the unsupervized learning method.
 <a/>
+
 To try get similar subsets who can correspond to our numbers recognization.
