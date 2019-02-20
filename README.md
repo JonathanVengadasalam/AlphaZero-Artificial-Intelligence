@@ -1,5 +1,5 @@
-# mnist_unsupervized_learning
-unsupervized learning on mnist data (handwritten digit)
+# mnist_unsupervised_learning
+unsupervised learning on mnist data (handwritten digit)
 
 Hi guys!
 
