@@ -6,6 +6,6 @@ Hi!
 This project concern the study of handwritten digit of numbers by the mnist data.
 
 I will use :
- - the dimensions reduction method.
- - the unsupervized learning method.
+- the dimensions reduction method.
+- the unsupervized learning method.
 To try get similar subsets who can correspond to our numbers recognization.
