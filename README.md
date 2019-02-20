@@ -1,13 +1,13 @@
 # mnist_unsupervized_learning
 unsupervized learning on mnist data (handwritten digit)
 
-Hi!
+Hi guys!
 
-This project concern the study of handwritten digit of numbers by the mnist data.
+This project concerns the study of handwritten numbers in digits of mnist dataset.
 
 I will use :
-- the dimensions reduction method.
-- the unsupervized learning method.
+- the reducing dimensions method.
+- the unsupervised learning method.
 <a/>
 
-To try get similar subsets who can correspond to our numbers recognization.
+To try to obtain subsets of similar elements that correspond to the human recognition of numbers.
