@@ -1,4 +1,4 @@
-# mnist_unsupervised_learning
+# AlphaZero Artificial Intellignence
 unsupervised learning on mnist data (handwritten digit)
 
 Hi guys!
