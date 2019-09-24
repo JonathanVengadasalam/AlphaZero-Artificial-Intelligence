@@ -6,7 +6,7 @@ from environnements.envConnect import Connect
 from neural_network_models.modelBuilder import model
 from tensorflow.python.keras.models import load_model
 
-def Main():
+def an_exemple_of_model_training():
 
     a1 = AI(itermax=50,alpha=0.5,use_subtree=True)
     a2 = AI(itermax=100,alpha=0.5,use_subtree=True)
@@ -35,8 +35,8 @@ def Main():
     selfplay(rootenv,2000,a5,a5,x,y,l,e)
 
     nx = np.array(x)
-    vy = np.array(y)[:,-1]
     py = np.array(y)[:,:-1]
+    vy = np.array(y)[:,-1]
 
     setdata("data/nx",nx)
     setdata("data/py",py)
