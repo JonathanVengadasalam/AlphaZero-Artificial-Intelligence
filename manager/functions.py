@@ -83,7 +83,7 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
         resultlist.append(result)
         if verbose & 1 == 1: print(i, round(time()-d2,2), result)
     
-    if verbose & 2 == 2: print(iteration, round(time()-d1,2), GetResult(ai1,ai2,resultlist))
+    if verbose & 2 == 2: print(iteration, round(time()-d1,2), getresult(ai1,ai2,resultlist))
 
 def testposition(env, ai, move, iteration=50, verbose=1):
     k = []
