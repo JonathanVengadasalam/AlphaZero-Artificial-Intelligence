@@ -6,7 +6,7 @@ from environnements.envConnect import Connect
 from neural_network_models.modelBuilder import model
 from tensorflow.python.keras.models import load_model
 
-def an_exemple_of_model_training():
+def pretraining_for_connect_game():
 
     a1 = AI(itermax=50,alpha=0.5,use_subtree=True)
     a2 = AI(itermax=100,alpha=0.5,use_subtree=True)
