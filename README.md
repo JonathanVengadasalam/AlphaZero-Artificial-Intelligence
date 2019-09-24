@@ -1,5 +1,5 @@
 # AlphaZero Artificial Intellignence
-unsupervised learning on mnist data (handwritten digit)
+An artificial intelligence who play games by using tree search and neural network method.
 
 Hi guys!
 
