@@ -44,9 +44,9 @@ class AI:
         self.use_subtree = use_subtree
         self.name = "a" + str(AI.count) if name == "" else name
         if type(model) is Model:
-            self.method, self.model, self.alpha = MODIFIED_MCTS, model, model.output_shape[0][1]*alpha
+            self.method, self.model, self.alpha = NeuralNetwork_TreeSearch, model, model.output_shape[0][1]*alpha
         else:
-            self.method, self.model, self.alpha = CLASSIC_MCTS, None, alpha
+            self.method, self.model, self.alpha = MonteCarlo_TreeSearch, None, alpha
         if formula == "UCB1":
             self.formula = _UCB1
         else:
@@ -56,7 +56,7 @@ class AI:
     
     def __repr__(self):
         res = "I:" + str(self.itermax) + ", A:" + str(self.alpha) + ", F:" + self.formula.__name__ + ", M:" + self.method.__name__ + ", N:" + self.name
-        if self.method is MODIFIED_MCTS: res += "_" + self.model.name
+        if self.method is NeuralNetwork_TreeSearch: res += "_" + self.model.name
         res += ", S:" + self.selection.__name__
         if self.selection is _Stochastic: res += ", T:" + str(round(self.temperature,2))
         return res + ", U:" + str(self.use_subtree) + ", D:" + str(self.add_data)
@@ -87,7 +87,7 @@ def _Stochastic(node, temperature):
     return None
 
 # Node Builder Method
-def CLASSIC_MCTS(rootenv, rootnode, itermax, alpha, formula, rnn):
+def MonteCarlo_TreeSearch(rootenv, rootnode, itermax, alpha, formula, rnn):
     if type(rootnode) is not Node:
         rootnode = Node(playerJustMoved=rootenv.playerJustMoved, untriedMoves=rootenv.GetMoves())
     
@@ -124,7 +124,7 @@ def CLASSIC_MCTS(rootenv, rootnode, itermax, alpha, formula, rnn):
             node = node.parentNode
 
     return rootnode
-def MODIFIED_MCTS(rootenv, rootnode, itermax, alpha, formula, rnn):
+def NeuralNetwork_TreeSearch(rootenv, rootnode, itermax, alpha, formula, rnn):
     if type(rootnode) is not Node: 
         rootnode = Node(playerJustMoved=rootenv.playerJustMoved)
     
