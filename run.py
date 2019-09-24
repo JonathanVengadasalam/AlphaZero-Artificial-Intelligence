@@ -44,4 +44,4 @@ def an_exemple_of_model_training():
     
     mod = model("master")
     mod.fit(nx, [py,vy], 64, 2, validation_split=0.2)
-    mod.save("neural_network_models/master_1")
+    mod.save("neural_network_models/pretrained")
