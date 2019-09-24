@@ -30,7 +30,7 @@ def _build_normal_block(x, config):
     x = Activation("relu")(x)
     return x
 
-def Main(name, nb_resnet=8):
+def model(name, nb_resnet=8):
     
     #common core
     in_x = x = Input((6,7,4))
@@ -57,3 +57,4 @@ def Main(name, nb_resnet=8):
     mod = Model(in_x, [policy_out, value_out], name=name)
     mod.compile(optimizer="sgd", loss=[categorical_crossentropy, mean_squared_error])
     mod.save(name)
+    return mod
