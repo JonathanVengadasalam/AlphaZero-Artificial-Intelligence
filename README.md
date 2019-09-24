@@ -1,5 +1,5 @@
 # AlphaZero Artificial Intellignence
-An artificial intelligence who play games by using tree search and neural network method.
+An artificial intelligence that plays games by using tree search method and neural networks.
 
 Hi guys!
 
