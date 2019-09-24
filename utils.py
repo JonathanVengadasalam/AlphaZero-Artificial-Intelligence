@@ -4,24 +4,14 @@ import pickle
 import numpy as np
 from math import sqrt, log, erf
 
-def brownian(N):
-    
-    b = np.insert(  np.random.normal(0., 1., int(N))*np.sqrt(1./N),  0, 0)
-    return np.cumsum(b), b
+def central_limite_function(x, m): return sqrt(len(x))*(np.mean(x) - m)/np.std(x)
 
-def GBM(So, mu, sigma, W, T):
-    
-    N = W.shape[0]
-    t = np.linspace(0.,T,N)
-    S = []
-    
-    for i in range(0,int(N)):
-        S.append(  So*np.exp((mu - 0.5 * sigma**2) * t[i] + sigma * W[i])  )
-    return S, t
+def standard_normal_distribution(x): return (1.0 + erf(x / sqrt(2.0))) / 2.0
 
-def CLF(S, m, v, N): return (m + S)/(v*sqrt(N))
-
-def cnd(x): return (1.0 + erf(x / sqrt(2.0))) / 2.0
+def z_test(x, m, alpha=0.05, unilateral=True):
+    proba = standard_normal_distribution(central_limite_function(x,m))
+    if unilateral: return (1 - alpha) < proba
+    return 0 < (proba - alpha/2)*(proba - 1 + alpha/2)
 
 def getdata(path):
     os.path.exists(path)
