@@ -11,8 +11,6 @@ from tensorflow.python.keras.losses import mean_squared_error, categorical_cross
 from tensorflow.python.keras.models import Model
 from tensorflow.python.keras.layers import Input, Add, Conv2D, BatchNormalization, Activation, MaxPooling2D, Flatten, Dropout, Dense
 
-config = { "filters":128, "kernel_size":2, "strides":(1,1), "padding":"same", "kernel_regularizer":l2(1e-4)}
-
 def _build_residual_block(x, config):
     in_x = x
     x = Conv2D(**config)(x)
@@ -30,7 +28,7 @@ def _build_normal_block(x, config):
     x = Activation("relu")(x)
     return x
 
-def model(name, nb_resnet=8):
+def build_model_for_connect_game(name, nb_resnet=8, **config):
     
     #common core
     in_x = x = Input((6,7,4))
