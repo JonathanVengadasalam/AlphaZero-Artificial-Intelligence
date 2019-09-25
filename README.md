@@ -3,7 +3,7 @@ This project is an implementation of an artificial intelligence inspired by the 
 
 ## Code :
 1. The artificial intelligence (ai) is implemented in the class "AI" in the module [artificial_intelligence/ai.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/artificial_intelligence/ai.py). For a given position of a game state (called environnement), the ai gives the best next move. To found this next move, it use one of these 2 methods below and others hyperparameters (iteration, formula, selection...) :
-   - Monte Carlo Tree Search (function : "ai.montecarlo_treesearch"), it doesn't use neural network but use monte carlo method to build the research tree ([wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)).
+   - Monte Carlo Tree Search (mcts) (function : "ai.montecarlo_treesearch"), it doesn't use neural network but use monte carlo method to build the research tree ([wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)).
    - Neural Network Tree Search (function : "ai.neuralnetwork_treesearch"), I modified the classical mcts function so that it integrates neural network, the function use the network to evaluate the positions and build the research tree. The network gives to results :
      - the policy : the probabilities of each next move.
      - the value : the probability that this position is winning.
@@ -15,6 +15,8 @@ This project is an implementation of an artificial intelligence inspired by the 
 ## Machine Learning :
 The network model is builded with the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). I build a deep convolutional neural network with 8 residual layers and each convolution has 64 filters with a kernel size of 2.
 
-The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
+I train the network in 2 steps. The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
+
+1. The ai using mcts method self-play several times to get a dataset of x (about 750 000 positions) and y, then the model fit the data. This pretrain is necessary for the model to be more efficient for the next step when it will train by reinforcement. Find this step in the function "
 
 
