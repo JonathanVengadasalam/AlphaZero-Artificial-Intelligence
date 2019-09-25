@@ -9,7 +9,7 @@ The artificial intelligence (ai) is the class "AI" in the module [artificial_int
    - the value : the probability that this position is winning.
 
 
-The games are in [environnement](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/tree/master/environnements). I implement the game Connect 4 in the module [envConnect](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/environnements/envConnect.py) and I use this game in this project to improve my neural network model. You can implement your one game like chess or draughts but be carefull that your class contains the function [clone, convertmove, domove, getmoves, getresult, value, update_y, x, y]
+The games are in [environnement](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/tree/master/environnements). I implement the game Connect 4 in the module [envConnect](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/environnements/envConnect.py) and I use this game in this project to improve my neural network model. You can implement your one game like chess or draughts but be carefull that your class contains the function [clone, convertmove, domove, getmoves, value, update_y, x, y]
 
 
 <a/>
