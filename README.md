@@ -15,8 +15,10 @@ With this 2 main method, the ai use others hyperparameters:
 
 The games are in [environnements](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/tree/master/environnements) (env). I implement the game Connect 4 in the module [envConnect](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/environnements/envConnect.py) and I use this game in this project to improve my neural network model. You can implement your one game like chess or draughts but be carefull that your class contains the function [clone, convertmove, domove, getmoves, value, update_y, x, y].
 
-The module manager contains the [functions](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) :
- - play
+The module manager contains the [functions](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) that manage env and ai(s) are used to :
+ - play against the ai (function : "play").
+ - collect data and results by playing ai vs ai (function : "selfplay").
+ - test the performance of an ai on a game position.
 
 
 <a/>
