@@ -8,7 +8,7 @@ This project is an implementation of an artificial intelligence inspired by the 
     - Neural Network Tree Search (function : "ai.neuralnetwork_treesearch"), I modified the classical mcts function so that it integrates neural network, the function use the network to evaluate the positions and build the research tree. The network gives to results :
       - the policy : the probabilities of each next move.
       - the value : the probability that this position is winning.
-   With this 2 main method, the ai use others hyperparameters:
+With this 2 main method, the ai use others hyperparameters:
  - the iteration : the number of node that are added to build the tree.
  - the formula : the upper confidence bound function and the alpha parameter that balances the exploitation and the exploration.
  - the selection : choise the move deterministically (the node that has the highest visits) or stochastically.
