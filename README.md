@@ -13,4 +13,8 @@ This project is an implementation of an artificial intelligence inspired by the 
 3. The module [manager/functions.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) gives to the user functions to collect data and results by playing several game ai versus ai (function : "selfplay"). The data is used to the machine learning and the results is used to test the network performance.
 
 ## Machine Learning :
-The methodology is in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py) module.
+The network is builded in the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). It is a deep convolutional neural network that has 8 residual layers.
+
+The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
+
+
