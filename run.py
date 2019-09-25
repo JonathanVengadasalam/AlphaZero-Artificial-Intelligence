@@ -17,7 +17,7 @@ def pretraining_for_connect_game(iteration=2000):
     a4 = AI(itermax=225,alpha=0.5,use_subtree=True)
     a5 = AI(itermax=300,alpha=0.5,use_subtree=True)
     config = { "filters":128, "kernel_size":2, "strides":(1,1), "padding":"same", "kernel_regularizer":l2(1e-4)}
-    mod = build_model_for_connect_game(name="pretrained",nb_resnet=8,config)
+    mod = build_model_for_connect_game(name="pretrained",nb_resnet=8,**config)
     
     #play game to collect data
     selfplay(rootenv,iteration,a1,a1,x,y,l,e)
