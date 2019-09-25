@@ -9,7 +9,7 @@ It is in the class "AI" in the module [artificial_intelligence/ai.py](https://gi
    - the policy : the probabilities of each next move.
    - the value : the probability that this position is winning.
 
-With this 2 main method, the ai use others hyperparameters:
+The ai use one of these 2 methods and others hyperparameters:
  - the iteration : the number of node that are added to build the tree.
  - the formula : the upper confidence bound function and the alpha parameter that balances the exploitation and the exploration.
  - the selection : choise the move deterministically (the node that has the highest visits) or stochastically.
@@ -24,4 +24,7 @@ The module manager contains the [functions](https://github.com/JonathanVengadasa
  - test the performance of an ai on a game position (function : "testposition").
 
 ## Methology for network improvement
+The methodology is in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py) module.
+### Supervized part
 
+### Reinforcement part
