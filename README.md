@@ -8,12 +8,12 @@ This project is an implementation of an artificial intelligence inspired by the 
      - the policy : the probabilities of each next move.
      - the value : the probability that this position is winning.
 
-2. The games are in [environnements](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/tree/master/environnements) (env). I implement the game Connect 4 in the module [envConnect.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/environnements/envConnect.py) and I use this game in this project to improve my neural network model. You can implement your one game like chess or draughts but be carefull that your class contains the function [clone, convertmove, domove, getmoves, value, update_y, x, y].
+2. The games are in the folder [environnements](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/tree/master/environnements) (env). I implement the game Connect 4 in the module [envConnect.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/environnements/envConnect.py) and I use this game in this project to improve my neural network model. You can implement your one game like chess or draughts but be carefull that your class contains the function [clone, convertmove, domove, getmoves, value, update_y, x, y].
 
 3. The module [manager/functions.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) gives to the user functions to collect data and results by playing several game ai versus ai (function : "selfplay"). The data is used to the machine learning and the results is used to test the network performance.
 
 ## Machine Learning :
-The network is builded in the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). It is a deep convolutional neural network that has 8 residual layers.
+The network model is builded with the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). I build a deep convolutional neural network with 8 residual layers and each convolution has 64 filters with a kernel size of 2.
 
 The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
 
