@@ -2,7 +2,6 @@
 This project is an implementation of an artificial intelligence inspired by the [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0) "AlphaGo Zero cheat sheet" develloped by Google 
 
 ## Code :
-
 ### Artificial Intelligence (ai)
 It is in the class "AI" in the module [artificial_intelligence/ai.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/artificial_intelligence/ai.py). For a given position of a game state, the ai gives the best next move. To found this next move, it can use 2 main method :
  - Monte Carlo Tree Search (function : "ai.montecarlo_treesearch"), it doesn't use neural network but use monte carlo method to build the research tree ([wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)).
@@ -24,7 +23,5 @@ The module manager contains the [functions](https://github.com/JonathanVengadasa
  - collect data and results by playing ai vs ai (function : "selfplay").
  - test the performance of an ai on a game position (function : "testposition").
 
+## Methology for network improvement
 
-<a/>
-
-To try to obtain subsets of similar elements that correspond to the human recognition of numbers.
