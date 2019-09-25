@@ -12,6 +12,6 @@ This project is an implementation of an artificial intelligence inspired by the 
 
 3. The module manager gives [functions](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) to the user to collect data and results by playing several game ai versus ai (function : "selfplay"). The data is used to learn the machine (neaural network) and the results is used to test the network performance.
 
-## Methology for network improvement
+## Machine Learning :
 The methodology is in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py) module.
 
