@@ -19,6 +19,6 @@ I train the network in 2 steps. The main functions are in the [run.py](https://g
 
 1. The ai using mcts method self-play several times to get a dataset of x (about 750 000 positions) and y, then the model fit the data. This pretrain is necessary for the model to be more efficient for the next step when it will train by reinforcement. Find this step in the function "pretraining_for_connect_game".
 
-2. Then, the ai use nnts method with the network to selplay. After getting data, the model fit it and get the new network. The new network
+2. Then, the ai use nnts method with the network to selplay. After getting data, the model fit it and get the new network. To test if the new network is better, the ai with the new network play 200 game against the ai with the old network. The new network is validated with an unilateral z-test.
 
 
