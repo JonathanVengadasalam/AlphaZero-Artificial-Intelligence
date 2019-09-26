@@ -11,6 +11,8 @@ from tensorflow.python.keras.losses import mean_squared_error, categorical_cross
 from tensorflow.python.keras.models import Model
 from tensorflow.python.keras.layers import Input, Add, Conv2D, BatchNormalization, Activation, MaxPooling2D, Flatten, Dropout, Dense
 
+default_config = { "filters":128, "kernel_size":2, "strides":(1,1), "padding":"same", "kernel_regularizer":l2(1e-4)}
+
 def _build_residual_block(x, config):
     in_x = x
     x = Conv2D(**config)(x)
@@ -29,6 +31,8 @@ def _build_normal_block(x, config):
     return x
 
 def build_model(name, height, width, depth, nb_resnet=8, **config):
+    
+    if config == {}: config = default_config
     
     #common core
     in_x = x = Input((height,width,depth))
