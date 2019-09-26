@@ -4,14 +4,14 @@ from time import time
 import numpy as np
 
 def play(rootenv, ai, envlist=[], verbose=0):
-    env, node = rootenv.Clone(), None
+    env, node = rootenv.clone(), None
     manturn = random.choice([1,-1])
     print("Man is the player {}".format(manturn) + "\n" + str(env))
     continue_game = True
     order = ""
     
     while continue_game:
-        envlist.append(env.Clone())
+        envlist.append(env.clone())
         if env.playerJustMoved != manturn:
             ask_order = True
             while ask_order: 
@@ -20,24 +20,24 @@ def play(rootenv, ai, envlist=[], verbose=0):
                     continue_game = False
                     ask_order = False
                     continue
-                move = env.ConvertMove(order)
+                move = env.convertmove(order)
                 if type(move) != type(None):
                     node = ai.UpdateNode(node, move)
-                    env.DoMove(move)
+                    env.domove(move)
                     ask_order = False
         else:
             node = tree = ai.GetNode(rootenv=env, rootnode=node)
             move = tree.move
-            env.DoMove(move)
+            env.domove(move)
 
         if order != "q":
             print("\nMove: " + str(move+1) + "\n" + str(env))
         else:
             print("Vous avez quittez")
-        if env.GetMoves() == []: continue_game = False
+        if env.getmoves() == []: continue_game = False
 
     if order != "q":
-        if env.Value() == 1.0:
+        if env.value() == 1.0:
             st = "Man" if manturn == env.playerJustMoved else "Computer"
             print(st + " wins!")
         else:
@@ -56,29 +56,29 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
         ai2.turn = random.choice([1,-1])
         ai1.turn = -1*ai2.turn
         len0 = len(xlist)
-        env = rootenv.Clone()
+        env = rootenv.clone()
         node1, node2 = None, None
 
-        while (env.GetMoves() != []):
+        while (env.getmoves() != []):
             if env.playerJustMoved == ai2.turn:
                 tree = node1 = ai1.GetNode(rootenv=env, rootnode=node1)
                 node2 = ai2.UpdateNode(node2, tree.move)
                 if ai1.add_data:
-                    xlist.append(env.X())
-                    ylist.append(env.Y(tree.move))
+                    xlist.append(env.x())
+                    ylist.append(env.y(tree.move))
             else:
                 tree = node2 = ai2.GetNode(rootenv=env, rootnode=node2)
                 node1 = ai1.UpdateNode(node1, tree.move)
                 if ai2.add_data:
-                    xlist.append(env.X())
-                    ylist.append(env.Y(tree.move))
-            env.DoMove(tree.move)
+                    xlist.append(env.x())
+                    ylist.append(env.y(tree.move))
+            env.domove(tree.move)
         
-        value, pjm = env.Value(), env.playerJustMoved
+        value, pjm = env.value(), env.playerJustMoved
         for j in range(len0,len(xlist)):
             ylist[j][-1] = 0.5 + (value - 0.5)*pjm*xlist[j][0,0,-1]
         
-        result = ai2.turn*pjm if env.Value() == 1.0 else 0
+        result = ai2.turn*pjm if env.value() == 1.0 else 0
         envlist.append(env)
         resultlist.append(result)
         if verbose & 1 == 1: print(i, round(time()-d2,2), result)
