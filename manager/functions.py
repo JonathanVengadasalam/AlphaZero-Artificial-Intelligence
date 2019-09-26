@@ -77,12 +77,12 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
             env.domove(tree.move)
         
         #collect value
-        value, pjm = env.value(), env.playerJustMoved
+        value, pjm = env.value(), env.state[0,0,-1]
         for j in range(len0,len(xlist)):
-            ylist[j][-1] = 0.5 + (value - 0.5)*pjm*xlist[j][0,0,-1]
+            ylist[j][-1] = value if pjm == xlist[j][0,0,-1] else 1 - value
         
         #collect result
-        result = ai2.turn*pjm if env.value() == 1.0 else 0
+        result = ai2.turn*env.playerJustMoved if env.value() == 1.0 else 0
         envlist.append(env)
         resultlist.append(result)
         if verbose & 1 == 1: print(i, round(time()-d2,2), result)
