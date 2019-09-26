@@ -28,10 +28,10 @@ def _build_normal_block(x, config):
     x = Activation("relu")(x)
     return x
 
-def build_model_for_connect_game(name, nb_resnet=8, **config):
+def build_model(name, height, width, depth, nb_resnet=8, **config):
     
     #common core
-    in_x = x = Input((6,7,4))
+    in_x = x = Input((height,width,depth))
     x = _build_normal_block(x, config)
     for _ in range(nb_resnet): x = _build_residual_block(x, config)
     res_out = x
