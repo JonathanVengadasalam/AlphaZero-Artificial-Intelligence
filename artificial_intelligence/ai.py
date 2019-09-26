@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tensorflow.python.keras.models import Model
-from math import sqrt, log
+from math import sqrt, log, exp
 from time import time
 import numpy as np
 import random
@@ -44,21 +44,21 @@ class AI:
         self.use_subtree = use_subtree
         self.name = "a" + str(AI.count) if name == "" else name
         if type(model) is Model:
-            self.method, self.model, self.alpha = NeuralNetwork_TreeSearch, model, model.output_shape[0][1]*alpha
+            self.method, self.model, self.alpha = neural_network_tree_search, model, model.output_shape[0][1]*alpha
         else:
-            self.method, self.model, self.alpha = MonteCarlo_TreeSearch, None, alpha
-        if formula == "UCB1":
-            self.formula = _UCB1
+            self.method, self.model, self.alpha = monte_carlo_tree_search, None, alpha
+        if formula == "ucb1":
+            self.formula = _ucb1
         else:
-            self.formula = _UCB2
-        self.selection, self.temperature = (_Stochastic, temperature) if stochastic else (_Competitive, 0)
+            self.formula = _ucb2
+        self.selection, self.temperature = (_stochastic, temperature) if stochastic else (_competitive, 0)
         AI.count += 1
     
     def __repr__(self):
         res = "I:" + str(self.itermax) + ", A:" + str(self.alpha) + ", F:" + self.formula.__name__ + ", M:" + self.method.__name__ + ", N:" + self.name
-        if self.method is NeuralNetwork_TreeSearch: res += "_" + self.model.name
+        if self.method is neural_network_tree_search: res += "_" + self.model.name
         res += ", S:" + self.selection.__name__
-        if self.selection is _Stochastic: res += ", T:" + str(round(self.temperature,2))
+        if self.selection is _stochastic: res += ", T:" + str(round(self.temperature,2))
         return res + ", U:" + str(self.use_subtree) + ", D:" + str(self.add_data)
 
     def GetNode(self, rootenv, rootnode):
@@ -71,13 +71,13 @@ class AI:
         return None
 
 # Upper Confident Bounce Formula
-def _UCB1(node, Visits, alpha): return node.quotient + alpha*sqrt(Visits+1)/(node.visits+1)
-def _UCB2(node, Visits, alpha): return node.quotient + alpha*node.proba*sqrt(2*log(Visits+1)/(node.visits+1))
+def _ucb1(node, Visits, alpha): return node.quotient + alpha*node.proba*sqrt(Visits+1)/(node.visits+1)
+def _ucb2(node, Visits, alpha): return node.quotient + alpha*node.proba*sqrt(2*log(Visits+1)/(node.visits+1))
 
 # Move Selection Method
-def _Competitive(node, temperature): 
+def _competitive(node, temperature): 
     return sorted(node.childNodes, key = lambda c: c.visits)[-1]
-def _Stochastic(node, temperature):
+def _stochastic(node, temperature):
     cursor, step, inverse = 0, 0, 1/temperature
     for c in node.childNodes: cursor += c.visits**inverse
     cursor = cursor*random.random()
@@ -87,7 +87,7 @@ def _Stochastic(node, temperature):
     return None
 
 # Node Builder Method
-def MonteCarlo_TreeSearch(rootenv, rootnode, itermax, alpha, formula, rnn):
+def monte_carlo_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
     if type(rootnode) is not Node:
         rootnode = Node(playerJustMoved=rootenv.playerJustMoved, untriedMoves=rootenv.GetMoves())
     
@@ -124,7 +124,7 @@ def MonteCarlo_TreeSearch(rootenv, rootnode, itermax, alpha, formula, rnn):
             node = node.parentNode
 
     return rootnode
-def NeuralNetwork_TreeSearch(rootenv, rootnode, itermax, alpha, formula, rnn):
+def neural_network_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
     if type(rootnode) is not Node: 
         rootnode = Node(playerJustMoved=rootenv.playerJustMoved)
     
