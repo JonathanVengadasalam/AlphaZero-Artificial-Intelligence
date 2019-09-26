@@ -89,34 +89,34 @@ def _stochastic(node, temperature):
 # Node Builder Method
 def monte_carlo_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
     if type(rootnode) is not Node:
-        rootnode = Node(playerJustMoved=rootenv.playerJustMoved, untriedMoves=rootenv.GetMoves())
+        rootnode = Node(playerJustMoved=rootenv.playerJustMoved, untriedMoves=rootenv.getmoves())
     
     for i in range(itermax):
         node = rootnode
-        env = rootenv.Clone()
+        env = rootenv.clone()
         
         # Select
         while node.untriedMoves == [] and node.childNodes != []:
             node = sorted(node.childNodes, key = lambda c: formula(c, node.visits, alpha))[-1]
-            env.DoMove(node.move)
+            env.domove(node.move)
 
         # Expand
         if node.untriedMoves != []:
             m = random.choice(node.untriedMoves)
-            env.DoMove(m)
-            n = Node(playerJustMoved=env.playerJustMoved, move=m, parent=node, untriedMoves=env.GetMoves())
+            env.domove(m)
+            n = Node(playerJustMoved=env.playerJustMoved, move=m, parent=node, untriedMoves=env.getmoves())
             node.untriedMoves.remove(m)
             node.childNodes.append(n)
             node = n
 
         # Rollout - this can often be made orders of magnitude quicker using a env.GetRandomMove() function
-        moves = env.GetMoves()
+        moves = env.getmoves()
         while moves != []:
-            env.DoMove(random.choice(moves))
-            moves = env.GetMoves()
+            env.domove(random.choice(moves))
+            moves = env.getmoves()
         
         # Backpropagate
-        value, pjm = env.Value(), env.playerJustMoved
+        value, pjm = env.value(), env.playerJustMoved
         while node != None:
             node.wins += 0.5 + (value - 0.5)*pjm*node.playerJustMoved
             node.visits += 1
@@ -129,9 +129,9 @@ def neural_network_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
         rootnode = Node(playerJustMoved=rootenv.playerJustMoved)
     
     if rootnode.childNodes == []:
-        moves = rootenv.GetMoves()
+        moves = rootenv.getmoves()
         if moves != []:
-            predicts = rnn.predict(np.array([rootenv.X()]))
+            predicts = rnn.predict(np.array([rootenv.x()]))
             tab = predicts[0][0,:]
             for m in moves:
                 rootnode.childNodes.append(Node(playerJustMoved=-1*rootnode.playerJustMoved, move=m, parent=rootnode, proba=tab[m]))
@@ -139,24 +139,24 @@ def neural_network_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
 
     while i < itermax:
         node = rootnode
-        env = rootenv.Clone()
+        env = rootenv.clone()
         
         # Select
         while node.isevaluate:
             node = sorted(node.childNodes, key = lambda c: formula(c, node.visits, alpha))[-1]
-            env.DoMove(node.move)
+            env.domove(node.move)
 
         # Expand & Asses
         childnodes = node.childNodes
-        k, value, pjm = 1, env.Value(), env.playerJustMoved
+        k, value, pjm = 1, env.value(), env.playerJustMoved
         if childnodes != []:
             xlist, mlist, vlist = [], [], []
             for c in childnodes:
-                _env = env.Clone()
-                _env.DoMove(c.move)
-                xlist.append(_env.X())
-                vlist.append(_env.Value())
-                mlist.append(_env.GetMoves())
+                _env = env.clone()
+                _env.domove(c.move)
+                xlist.append(_env.x())
+                vlist.append(_env.value())
+                mlist.append(_env.getmoves())
             predicts = rnn.predict(np.array(xlist))
 
             for j in range(len(childnodes)):
