@@ -26,7 +26,7 @@ def play(rootenv, ai, envlist=[], verbose=0):
                     env.domove(move)
                     ask_order = False
         else:
-            node = tree = ai.GetNode(rootenv=env, rootnode=node)
+            node = tree = ai.getnode(rootenv=env, rootnode=node)
             move = tree.move
             env.domove(move)
 
@@ -61,14 +61,14 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
 
         while (env.getmoves() != []):
             if env.playerJustMoved == ai2.turn:
-                tree = node1 = ai1.GetNode(rootenv=env, rootnode=node1)
-                node2 = ai2.UpdateNode(node2, tree.move)
+                tree = node1 = ai1.getnode(rootenv=env, rootnode=node1)
+                node2 = ai2.updatenode(node2, tree.move)
                 if ai1.add_data:
                     xlist.append(env.x())
                     ylist.append(env.y(tree.move))
             else:
-                tree = node2 = ai2.GetNode(rootenv=env, rootnode=node2)
-                node1 = ai1.UpdateNode(node1, tree.move)
+                tree = node2 = ai2.getnode(rootenv=env, rootnode=node2)
+                node1 = ai1.updatenode(node1, tree.move)
                 if ai2.add_data:
                     xlist.append(env.x())
                     ylist.append(env.y(tree.move))
@@ -89,7 +89,7 @@ def testposition(env, ai, move, iteration=50, verbose=1):
     k = []
     d = time()
     for i in range(iteration):
-        s = 1 if ai.GetNode(env,None).move == move else 0
+        s = 1 if ai.getnode(env,None).move == move else 0
         k.append(s)
     d = round(time() - d,2)
     if verbose & 1 == 1: print(d, len(k), sum(k))
