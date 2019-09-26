@@ -5,21 +5,24 @@ Target = 4
 Height = 6
 Width = 7
 InitialPlayerMove = -1
+PeriodNumber = 3
+Depth = 2*PeriodNumber + 1
 
 class Connect:
 
-    def __init__(self, playerjm=None, state0=None, state1=None, state2=None, validmoves=None, indexes=None, aligned=False):
+    def __init__(self, playerjm=None, validmoves=None, indexes=None, aligned=False, state=None):
         
         self.isaligned = aligned
 
         if type(playerjm) == int:
             self.playerJustMoved = playerjm
-            self.state0, self.state1, self.state2 = state0, state1, state2
+            self.state = state
             self.validmoves = validmoves
             self.indexes = indexes
         else:
             self.playerJustMoved = InitialPlayerMove
-            self.state0, self.state1, self.state2 = np.zeros((Height,Width,1)), np.zeros((Height,Width,1)), np.zeros((Height,Width,1))
+            self.state = np.zeros((Height,Width,Depth))
+            self.state[:,:,-1] = 0.5 + self.playerJustMoved*0.5
             self.indexes = np.ones(Width, dtype=int)*(Height-1)
             self.validmoves = list(range(Width))
     
@@ -28,8 +31,8 @@ class Connect:
         return s
     
     def clone(self):
-        return Connect(playerjm = self.playerJustMoved,\
-                        state0 = self.state0.copy(), state1 = self.state1.copy(), state2 = self.state2.copy(),
+        return New(playerjm = self.playerJustMoved,\
+                        state = self.state.copy(),
                         validmoves = self.validmoves.copy(),\
                         indexes = self.indexes.copy(),\
                         aligned = self.isaligned)
@@ -47,71 +50,65 @@ class Connect:
 
     def domove(self, col):
         ind = self.indexes[col]
-        self.state2 = self.state1.copy()
-        self.state1 = self.state0.copy()
-        self.state0[ind,col,0] = -1*self.playerJustMoved
-        
+        self.playerJustMoved = -1*self.playerJustMoved
+        self.state[:,:,-1] = 1 - self.state[0,0,-1]
+        lig = 0 if self.playerJustMoved == 1 else PeriodNumber
+        self.state[:,:,lig+2] = self.state[:,:,lig+1]                 # if PeriodNumber changes you have to change
+        self.state[:,:,lig+1] = self.state[:,:,lig]                   # this part of code
+        self.state[ind,col,lig] = 1
         self.indexes[col] -= 1
         if self.indexes[col] < 0:
             self.validmoves.remove(col)
-        if self._isaligned(ind, col):
+        if self._testalignment(ind, col, lig):
             self.validmoves = []
             self.isaligned = True
-        self.playerJustMoved = -1*self.playerJustMoved
     
     def getmoves(self): return self.validmoves.copy()
-    
-    #def GetResult(self, playerjm, value): return 0.5 + (value - 0.5)*self.playerJustMoved*playerjm
 
     def value(self): return 0.5 + int(self.isaligned)/2
-
-    def update_y(self, x, y, value): y[Width] = self.GetResult(x[0,0,3], value)
     
-    def x(self): return np.concatenate((self.state0, self.state1, self.state2, np.ones((Height,Width,1))*self.playerJustMoved), -1)
+    def x(self): return self.state.copy()
     
     def y(self, move):
         res = np.zeros(Width+1)
         res[move] = 1
         return res
     
-    def _convert(self, x):
-        if x == 1: return " X "
-        if x == -1: return " O "
-        if x == 0: return "   "
+    def _convert(self, x1, x2):
+        if x1 == 1: return " X "
+        if x2 == 1: return " O "
+        return "   "
     
-    def _countneighbors(self, ind, col, imax, a, b):
-        again, count, i = True, 0, 1
-        
-        while again and (i < imax):
-            if self.state0[ind,col,0] == self.state0[ind+a*i,col+b*i,0]:
-                count += 1
-            else:
-                again = False
-            i += 1
+    def _countneighbors(self, ind, col, lig, imax, a, b):
+        count = 0
+        for i in range(1,imax):
+            if self.state[ind+a*i, col+b*i, lig] == 0:
+                return count
+            count += 1
         return count
     
-    def _isaligned(self, ind, col):
+    def _testalignment(self, ind, col, lig):
         ind1, ind2, col1, col2 = ind+1, Height-ind, col+1, Width-col
-        if self._countneighbors(ind, col, ind2, 1, 0) + self._countneighbors(ind, col, ind1, -1, 0) + 1 > Target-1: return True
-        if self._countneighbors(ind, col, col2, 0, 1) + self._countneighbors(ind, col, col1, 0, -1) + 1 > Target-1: return True
-        if self._countneighbors(ind, col, min(col2,ind2), 1, 1) + self._countneighbors(ind, col, min(col1,ind1), -1, -1) + 1 > Target-1: return True
-        if self._countneighbors(ind, col, min(col1,ind2), 1, -1) + self._countneighbors(ind, col, min(col2,ind1), -1, 1) + 1 > Target-1: return True
+        if self._countneighbors(ind, col, lig, ind2, 1, 0) + self._countneighbors(ind, col, lig, ind1, -1, 0) + 1 > Target-1: return True
+        if self._countneighbors(ind, col, lig, col2, 0, 1) + self._countneighbors(ind, col, lig, col1, 0, -1) + 1 > Target-1: return True
+        if self._countneighbors(ind, col, lig, min(ind2,col2), 1, 1) + self._countneighbors(ind, col, lig, min(ind1,col1),-1,-1) + 1 > Target-1: return True
+        if self._countneighbors(ind, col, lig, min(ind2,col1), 1,-1) + self._countneighbors(ind, col, lig, min(ind1,col2),-1, 1) + 1 > Target-1: return True
         return False
     
     def _tostring(self):
         width = Width
-        st = self._convert(self.state0[0,0,0])
+        st = self._convert(self.state[0,0,0], self.state[0,0,PeriodNumber])
         line = ""
         for i in range(4*width-1):
             line += "-"
         
         for i in range(1, width):
-            st += "|" + self._convert(self.state0[0,i,0])
+            st += "|" + self._convert(self.state[0,i,0], self.state[0,i,PeriodNumber])
         
         for i in range(1, Height):
-            st += "\n" + line + "\n" + self._convert(self.state0[i,0,0])
+            st += "\n" + line + "\n" + self._convert(self.state[i,0,0], self.state[i,0,PeriodNumber])
             for j in range(1, width):
-                st += "|" + self._convert(self.state0[i,j,0])
+                st += "|" + self._convert(self.state[i,j,0], self.state[i,j,PeriodNumber])
         st += "\n 1 "
         for i in range(1, width):
             st += "  " + str(i+1) + " "
