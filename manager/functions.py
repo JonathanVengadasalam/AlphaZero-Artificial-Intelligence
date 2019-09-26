@@ -53,12 +53,14 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
 
         d2 = time()
 
+        #initialize ais and variables
         ai2.turn = random.choice([1,-1])
         ai1.turn = -1*ai2.turn
         len0 = len(xlist)
         env = rootenv.clone()
         node1, node2 = None, None
 
+        #play game, collect x and policy
         while (env.getmoves() != []):
             if env.playerJustMoved == ai2.turn:
                 tree = node1 = ai1.getnode(rootenv=env, rootnode=node1)
@@ -74,10 +76,12 @@ def selfplay(rootenv, iteration, ai1, ai2, xlist=[], ylist=[], resultlist=[], en
                     ylist.append(env.y(tree.move))
             env.domove(tree.move)
         
+        #collect value
         value, pjm = env.value(), env.playerJustMoved
         for j in range(len0,len(xlist)):
             ylist[j][-1] = 0.5 + (value - 0.5)*pjm*xlist[j][0,0,-1]
         
+        #collect result
         result = ai2.turn*pjm if env.value() == 1.0 else 0
         envlist.append(env)
         resultlist.append(result)
