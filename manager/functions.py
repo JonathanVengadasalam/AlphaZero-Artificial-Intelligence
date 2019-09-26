@@ -22,7 +22,7 @@ def play(rootenv, ai, envlist=[], verbose=0):
                     continue
                 move = env.convertmove(order)
                 if type(move) != type(None):
-                    node = ai.UpdateNode(node, move)
+                    node = ai.updatenode(node, move)
                     env.domove(move)
                     ask_order = False
         else:
