@@ -95,12 +95,12 @@ def monte_carlo_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
         node = rootnode
         env = rootenv.clone()
         
-        # Select
+        #select
         while node.untriedMoves == [] and node.childNodes != []:
             node = sorted(node.childNodes, key = lambda c: formula(c, node.visits, alpha))[-1]
             env.domove(node.move)
 
-        # Expand
+        #expand
         if node.untriedMoves != []:
             m = random.choice(node.untriedMoves)
             env.domove(m)
@@ -109,13 +109,13 @@ def monte_carlo_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
             node.childNodes.append(n)
             node = n
 
-        # Rollout - this can often be made orders of magnitude quicker using a env.GetRandomMove() function
+        #rollout - this can often be made orders of magnitude quicker using a env.getrandommove() function
         moves = env.getmoves()
         while moves != []:
             env.domove(random.choice(moves))
             moves = env.getmoves()
         
-        # Backpropagate
+        #backpropagate
         value, pjm = env.value(), env.playerJustMoved
         while node != None:
             node.wins += 0.5 + (value - 0.5)*pjm*node.playerJustMoved
@@ -141,12 +141,12 @@ def neural_network_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
         node = rootnode
         env = rootenv.clone()
         
-        # Select
+        #select
         while node.isevaluate:
             node = sorted(node.childNodes, key = lambda c: formula(c, node.visits, alpha))[-1]
             env.domove(node.move)
 
-        # Expand & Asses
+        #expand & evaluate
         childnodes = node.childNodes
         k, value, pjm = 1, env.value(), env.playerJustMoved
         if childnodes != []:
@@ -172,7 +172,7 @@ def neural_network_tree_search(rootenv, rootnode, itermax, alpha, formula, rnn):
             k, value, pjm = len(vlist), sum(vlist), -1*pjm
             node.isevaluate = True
         
-        # Backpropagate
+        #backpropagate
         while node != None:
             node.wins += 0.5*k + (value - 0.5*k)*pjm*node.playerJustMoved
             node.visits += k
