@@ -61,10 +61,10 @@ class AI:
         if self.selection is _stochastic: res += ", T:" + str(round(self.temperature,2))
         return res + ", U:" + str(self.use_subtree) + ", D:" + str(self.add_data)
 
-    def GetNode(self, rootenv, rootnode):
+    def getnode(self, rootenv, rootnode):
         return self.selection(self.method(rootenv, rootnode, self.itermax, self.alpha, self.formula, self.model), self.temperature)
         
-    def UpdateNode(self, node, move):
+    def updatenode(self, node, move):
         if (type(node) is Node) and self.use_subtree: 
             for c in node.childNodes: 
                 if c.move == move: return c
