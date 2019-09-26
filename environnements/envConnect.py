@@ -27,14 +27,14 @@ class Connect:
         s = "JustPlayed:" + str(self.playerJustMoved) + "\n" + self._tostring() + "\n"
         return s
     
-    def Clone(self):
+    def clone(self):
         return Connect(playerjm = self.playerJustMoved,\
                         state0 = self.state0.copy(), state1 = self.state1.copy(), state2 = self.state2.copy(),
                         validmoves = self.validmoves.copy(),\
                         indexes = self.indexes.copy(),\
                         aligned = self.isaligned)
     
-    def ConvertMove(self, col):
+    def convertmove(self, col):
         res = None
         try:
             col = int(col) - 1
@@ -45,7 +45,7 @@ class Connect:
         except IndexError: print("Choix impossible")
         return res
 
-    def DoMove(self, col):
+    def domove(self, col):
         ind = self.indexes[col]
         self.state2 = self.state1.copy()
         self.state1 = self.state0.copy()
@@ -59,17 +59,17 @@ class Connect:
             self.isaligned = True
         self.playerJustMoved = -1*self.playerJustMoved
     
-    def GetMoves(self): return self.validmoves.copy()
+    def getmoves(self): return self.validmoves.copy()
     
-    def GetResult(self, playerjm, value): return 0.5 + (value - 0.5)*self.playerJustMoved*playerjm
+    #def GetResult(self, playerjm, value): return 0.5 + (value - 0.5)*self.playerJustMoved*playerjm
 
-    def Value(self): return 0.5 + int(self.isaligned)/2
+    def value(self): return 0.5 + int(self.isaligned)/2
 
-    def UpdateY(self, x, y, value): y[Width] = self.GetResult(x[0,0,3], value)
+    def update_y(self, x, y, value): y[Width] = self.GetResult(x[0,0,3], value)
     
-    def X(self): return np.concatenate((self.state0, self.state1, self.state2, np.ones((Height,Width,1))*self.playerJustMoved), -1)
+    def x(self): return np.concatenate((self.state0, self.state1, self.state2, np.ones((Height,Width,1))*self.playerJustMoved), -1)
     
-    def Y(self, move):
+    def y(self, move):
         res = np.zeros(Width+1)
         res[move] = 1
         return res
