@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-    problem : "no name python in the module tensorflow"
-    solution :
-    -- in manage/settings
-    -- in the search bar I pasted "python.linting.pylintEnable"
-    -- and I unchecked the box "Wether to lint Python files using pylint"
-"""
 from tensorflow.python.keras.regularizers import l2
 from tensorflow.python.keras.losses import mean_squared_error, categorical_crossentropy
 from tensorflow.python.keras.models import Model
