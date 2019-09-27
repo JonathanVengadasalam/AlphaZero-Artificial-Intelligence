@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from utils import *
-from manager.functions import *
+from utils import setdata, z_test
+from manager.functions import selfplay
 from artificial_intelligence.ai import AI
 from environnements import envConnect as env
 from tensorflow.python.keras.models import load_model
