@@ -1,8 +1,7 @@
 # AlphaZero Artificial Intellignence
 This project is a Python implementation of an artificial intelligence inspired by the [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0) "AlphaGo Zero cheat sheet" develloped by Google.
 
-To start training a model for Connect game :
-''' python run.main() '''
+To start training a model for Connect game : `ppython run.main()`
 
 ## Code description :
 1. The artificial intelligence (ai) is implemented to play 2 player games played each turn. It is coded in the class "AI" in the module [artificial_intelligence/ai.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/artificial_intelligence/ai.py). For a given position of a game state (called environnement), the ai gives the best next move. To found this next move, it use one of these 2 methods below and others hyperparameters (iteration, formula, selection...) :
