@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import numpy as np
 from utils import setdata, z_test
 from manager.functions import selfplay
@@ -69,10 +70,10 @@ def selftraining_for_connect(name, iteration=4000):
     setdata("data/pretrained/" + name + "/py",py)
     setdata("data/pretrained/" + name + "/vy",vy)
 
-    #train model and save
+    #train model and return
     mod.fit(nx, [py,vy], 64, 2, validation_split=0.2)
-    mod.save("neural_network_models/" + name)
-
+    mod.save("neural_network_models/" + name + "_new")
+    
     return mod
 
 def evaluate_network(name1, name2, iteration=200, alpha=0.05):
@@ -90,3 +91,10 @@ def evaluate_network(name1, name2, iteration=200, alpha=0.05):
 
     #test mod2
     return z_test(x=l,m=0,alpha=alpha,unilateral=True)
+
+def main(name="master"):
+    
+    new = selftraining_for_connect(name)
+    if evaluate_network(name,name+"_new"):
+        new.save(name)
+        os.remove(name+"_new")
