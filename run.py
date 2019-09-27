@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import numpy as np
 from utils import setdata, z_test
 from manager.functions import selfplay
 from artificial_intelligence.ai import AI
