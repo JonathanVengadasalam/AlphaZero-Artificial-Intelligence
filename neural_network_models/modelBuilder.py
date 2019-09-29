@@ -4,7 +4,7 @@ from tensorflow.python.keras.losses import mean_squared_error, categorical_cross
 from tensorflow.python.keras.models import Model
 from tensorflow.python.keras.layers import Input, Add, Conv2D, BatchNormalization, Activation, MaxPooling2D, Flatten, Dropout, Dense
 
-default_config = { "filters":128, "kernel_size":2, "strides":(1,1), "padding":"same", "kernel_regularizer":l2(1e-4)}
+default_config = { "filters":128, "kernel_size":3, "strides":(1,1), "padding":"same", "kernel_regularizer":l2(1e-4)}
 
 def _build_residual_block(x, config):
     in_x = x
