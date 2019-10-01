@@ -4,6 +4,7 @@ This project is a Python implementation of an artificial intelligence inspired b
 To start training a model for Connect game : `python run.main()`
 
 ## Code description :
+![Code Organisation](https://github.com/JonathanVengadasalam/Artificial-Intelligence/blob/master/code%20organisation.png)
 1. The artificial intelligence (ai) is implemented to play 2 player games played each turn. It is coded in the class "AI" in the module [artificial_intelligence/ai.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/artificial_intelligence/ai.py). For a given position of a game state (called environnement), the ai gives the best next move. To found this next move, it use one of these 2 methods below and others hyperparameters (iteration, formula, selection...) :
    - Monte Carlo Tree Search (mcts) (function : `ai.montecarlo_treesearch`), it doesn't use neural network but use monte carlo method to build the research tree ([wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)).
    - Neural Network Tree Search (nnts) (function : `ai.neuralnetwork_treesearch`), I modified the classical mcts function so that it integrates neural network, the function use the network to evaluate the positions and build the research tree. The network gives to results :
