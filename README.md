@@ -17,6 +17,7 @@ To start training a model for Connect game : `python run.main()`
 
 ## Machine Learning :
 ![model/user/manager relations](https://github.com/JonathanVengadasalam/Artificial-Intelligence/blob/master/images/model%20user%20manager%20relationship.png)
+
 The network model is builded with the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). I build a deep convolutional neural network with 8 residual layers and each convolution has 128 filters with a kernel size of 3. The model try to predict the policy and the value from the game actual and 5 previous positions and the player who just moved.
 
 I train the network in 2 steps. The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
