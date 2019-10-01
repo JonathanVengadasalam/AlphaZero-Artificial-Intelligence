@@ -4,7 +4,7 @@ This project is a Python implementation of an artificial intelligence inspired b
 To start training a model for Connect game : `python run.main()`
 
 ## Code description :
-![ai/manager/environnement relations](https://github.com/JonathanVengadasalam/Artificial-Intelligence/blob/master/ai%20manager%20env%20relatiship.png)
+![ai/manager/environnement relations](https://github.com/JonathanVengadasalam/Artificial-Intelligence/blob/master/images/ai%20manager%20env%20relatiship.png)
 1. The artificial intelligence (ai) is implemented to play 2 player games played each turn. It is coded in the class "AI" in the module [artificial_intelligence/ai.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/artificial_intelligence/ai.py). For a given position of a game state (called environnement), the ai gives the best next move. To found this next move, it use one of these 2 methods below and others hyperparameters (iteration, formula, selection...) :
    - Monte Carlo Tree Search (mcts) (function : `ai.montecarlo_treesearch`), it doesn't use neural network but use monte carlo method to build the research tree ([wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)).
    - Neural Network Tree Search (nnts) (function : `ai.neuralnetwork_treesearch`), I modified the classical mcts function so that it integrates neural network, the function use the network to evaluate the positions and build the research tree. The network gives to results :
@@ -16,6 +16,7 @@ To start training a model for Connect game : `python run.main()`
 3. The module [manager/functions.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/manager/functions.py) gives to the user functions to collect data and results by playing several game ai versus ai (function : `run.selfplay`). The data is used to the machine learning and the results is used to test the network performance.
 
 ## Machine Learning :
+![model/user/manager relations](https://github.com/JonathanVengadasalam/Artificial-Intelligence/blob/master/images/model%20user%20manager%20relationship.png)
 The network model is builded with the module [neural_network_models/modelBuilder.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/neural_network_models/modelBuilder.py). I build a deep convolutional neural network with 8 residual layers and each convolution has 128 filters with a kernel size of 3. The model try to predict the policy and the value from the game actual and 5 previous positions and the player who just moved.
 
 I train the network in 2 steps. The main functions are in the [run.py](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/run.py).
