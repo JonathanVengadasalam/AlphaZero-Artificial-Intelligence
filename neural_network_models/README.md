@@ -11,7 +11,8 @@ The model takes in inputs the game state that is presented as an array of numeri
 ![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/convolution.png)
 
 ## Processing Functions
-### Batch Normalisation : takes in input a 3D array x and return (x - mean(x))/standard_deviation(x)
+Batch Normalisation : takes in input a 3D array x and return (x - mean(x))/standard_deviation(x)
+Relectified Linear Unit : f(x) = max(0, x)
 
 The module `neural_network_models.py` need to install TensorFLow library, see the link : https://www.tensorflow.org/install/pip.
 
