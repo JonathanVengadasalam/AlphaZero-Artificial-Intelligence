@@ -8,6 +8,7 @@ The model takes in inputs the game state that is presented as an array of numeri
 
 ## 2 Dimensional Convolution
 
+![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/convolution.png)
 The module `neural_network_models.py` need to install TensorFLow library, see the link : https://www.tensorflow.org/install/pip.
 
 The function `build_model` builds a deep residual network. so as you can see in the lineit needs the input size (height, width, depth)
