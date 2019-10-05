@@ -3,6 +3,8 @@ The network models are inspired by the works of DeepMind. You can see the networ
 
 The game state is presented as an array of numerical value in 3 dimensions.
 
+![game state](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/game%20state.png)
+
 The module `neural_network_models.py` need to install TensorFLow library, see the link : https://www.tensorflow.org/install/pip.
 
 The function `build_model` builds a deep residual network. so as you can see in the lineit needs the input size (height, width, depth)
