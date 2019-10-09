@@ -10,11 +10,11 @@ The input is an array of numerical value in 3 dimensions.
 
 ![game state](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/game%20state%20architecture.png)
 
-## Layers
- - [Fully Connected](https://en.wikipedia.org/wiki/Artificial_neural_network)
+## Layers and Functions
+ - [Fully Connected](https://en.wikipedia.org/wiki/Artificial_neural_network) : `Dense` is a connected neural layer.
 
- - [2 Dimensional Convolution](https://en.wikipedia.org/wiki/Convolutional_neural_network)
-![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png) `Conv2D`
+ - [2 Dimensional Convolution](https://en.wikipedia.org/wiki/Convolutional_neural_network) : `Conv2D`
+![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png)
 
  - [Batch Normalization](https://en.wikipedia.org/wiki/Batch_normalization) : `BatchNormalization` takes in input the 3D array tab(x, y, z). For i from 1 to n, the function gets the 2D arrays tab(., ., i). For each tab(., ., i), it calculates its mean and its standard deviation  and computes `tab(., ., i) = (tab(., ., i) - mean(i))/standard_deviation(i)`. It return the transformed tab(x, y, z).
 
