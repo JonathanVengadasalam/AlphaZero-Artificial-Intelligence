@@ -14,7 +14,7 @@ The input is an array of numerical value in 3 dimensions.
  - 2 Dimensional Convolution
 ![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png)
 
- - [Batch Normalisation](https://en.wikipedia.org/wiki/Batch_normalization) : takes in input a 3D array x and return `(x - mean(x))/standard_deviation(x)`
+ - [Batch Normalisation](https://en.wikipedia.org/wiki/Batch_normalization) : the function takes in input a 3D array `tab(x, y, z)`. For i from 1 to n, the function gets the 2D arrays `tab(., ., i)`. For each `tab(., ., i)`, the function calculates its mean and its standard deviation  and computes `tab(., ., i) = (tab(., ., i) - mean(i))/standard_deviation(i)`. The the function return the transformed `tab(x, y, z)`.
 
  - [Relectified Linear Unit Activation](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) : `f(x) = max(0, x)`
 
