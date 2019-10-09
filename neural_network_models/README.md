@@ -11,7 +11,7 @@ The input is an array of numerical value in 3 dimensions.
 ![game state](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/game%20state%20architecture.png)
 
 ## Layers
-
+ - 2 Dimensional Convolution
 ![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png)
 
  - [Batch Normalisation](https://en.wikipedia.org/wiki/Batch_normalization) : takes in input a 3D array x and return `(x - mean(x))/standard_deviation(x)`
