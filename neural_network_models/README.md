@@ -12,11 +12,8 @@ The input is an array of numerical value in 3 dimensions.
 
 ## Layers
 
-### 2 Dimensional Convolution
-
 ![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png)
 
-### Processing Functions
 [Batch Normalisation](https://en.wikipedia.org/wiki/Batch_normalization) : takes in input a 3D array x and return `(x - mean(x))/standard_deviation(x)`
 
 [Relectified Linear Unit Activation](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) : `f(x) = max(0, x)`
