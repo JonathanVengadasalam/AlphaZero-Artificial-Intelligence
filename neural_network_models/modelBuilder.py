@@ -23,7 +23,7 @@ def _build_normal_block(x, config):
     x = Activation("relu")(x)
     return x
 
-def build_model(name, height, width, depth, nb_resnet=8, **config):
+def build_model(name, nb_policy, height, width, depth, nb_resnet=8, **config):
     
     if config == {}: config = default_config
     
@@ -38,7 +38,7 @@ def build_model(name, height, width, depth, nb_resnet=8, **config):
     x = BatchNormalization()(x)
     x = Activation("relu")(x)
     x = Flatten()(x)
-    policy_out = Dense(7, kernel_regularizer=l2(1e-4), activation="softmax", name="policy_out")(x)
+    policy_out = Dense(nb_policy, kernel_regularizer=l2(1e-4), activation="softmax", name="policy_out")(x)
 
     #value branch
     x = Conv2D(filters=1, kernel_size=1, strides=(1,1), padding="same", kernel_regularizer=l2(1e-4))(res_out)
