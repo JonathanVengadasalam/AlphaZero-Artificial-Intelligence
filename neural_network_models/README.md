@@ -12,12 +12,14 @@ The input is an array of numerical value in 3 dimensions.
 
 ![game state](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/game%20state%20architecture.png)
 
-## Layers and Functions
- - [Fully Connected](https://en.wikipedia.org/wiki/Artificial_neural_network) : `Dense` is a connected neural layer.
+## Model
+Find below the model's layers and functions :
 
- - [2 Dimensional Convolution](https://en.wikipedia.org/wiki/Convolutional_neural_network) : `Conv2D`
+ - [Fully Connected](https://en.wikipedia.org/wiki/Artificial_neural_network) (`Dense`).
+
+ - [2 Dimensional Convolution](https://en.wikipedia.org/wiki/Convolutional_neural_network) (`Conv2D`).
 ![2D convolution](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/images/2DConvolution.png)
 
- - [Batch Normalization](https://en.wikipedia.org/wiki/Batch_normalization) : `BatchNormalization` takes in input the 3D array tab(x, y, z). For i from 1 to n, the function gets the 2D arrays tab(., ., i). For each tab(., ., i), it calculates its mean and its standard deviation  and computes `tab(., ., i) = (tab(., ., i) - mean(i))/standard_deviation(i)`. It return the transformed tab(x, y, z).
+ - [Batch Normalization](https://en.wikipedia.org/wiki/Batch_normalization) (`BatchNormalization`) takes in input the 3D array tab(x, y, z). For i from 1 to n, the function gets the 2D arrays tab(., ., i). For each tab(., ., i), it calculates its mean and its standard deviation  and computes `tab(., ., i) = (tab(., ., i) - mean(i))/standard_deviation(i)`. It return the transformed tab(x, y, z).
 
- - [Relectified Linear Unit Activation](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) : `Actiavation("relu")` takes in input the 3D array, for each coordinates i, j, k of the array the function computes `f(tab(i, j, k)) = max(0, tab(i, j, k))` and return the array.
+ - [Relectified Linear Unit Activation](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) (`Actiavation("relu")`) takes in input the 3D array, for each coordinates i, j, k of the array the function computes `f(tab(i, j, k)) = max(0, tab(i, j, k))` and return the array.
