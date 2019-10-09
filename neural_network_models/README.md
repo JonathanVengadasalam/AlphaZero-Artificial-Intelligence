@@ -1,3 +1,5 @@
+The module `neural_network_models.py` need to install TensorFLow library, see the link : https://www.tensorflow.org/install/pip.
+
 # Neural Network Models
 The network models are inspired by the works of DeepMind. You can see the network architecture in their [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0).
 
@@ -19,5 +21,3 @@ The input is an array of numerical value in 3 dimensions.
  - [Batch Normalization](https://en.wikipedia.org/wiki/Batch_normalization) : `BatchNormalization` takes in input the 3D array tab(x, y, z). For i from 1 to n, the function gets the 2D arrays tab(., ., i). For each tab(., ., i), it calculates its mean and its standard deviation  and computes `tab(., ., i) = (tab(., ., i) - mean(i))/standard_deviation(i)`. It return the transformed tab(x, y, z).
 
  - [Relectified Linear Unit Activation](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) : `Actiavation("relu")` takes in input the 3D array, for each coordinates i, j, k of the array the function computes `f(tab(i, j, k)) = max(0, tab(i, j, k))` and return the array.
-
-The module `neural_network_models.py` need to install TensorFLow library, see the link : https://www.tensorflow.org/install/pip.
