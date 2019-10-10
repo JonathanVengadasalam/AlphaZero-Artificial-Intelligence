@@ -10,9 +10,9 @@ Depth = 2*PeriodNumber + 1
 
 class Connect:
 
-    def __init__(self, playerjm=None, validmoves=None, indexes=None, aligned=False, state=None):
+    def __init__(self, playerjm=None, validmoves=None, indexes=None, terminated=False, state=None):
         
-        self.isaligned = aligned
+        self.terminated = terminated
 
         if type(playerjm) == int:
             self.playerJustMoved = playerjm
@@ -35,7 +35,7 @@ class Connect:
                         state = self.state.copy(),
                         validmoves = self.validmoves.copy(),\
                         indexes = self.indexes.copy(),\
-                        aligned = self.isaligned)
+                        terminated = self.terminated)
     
     def convertmove(self, col):
         res = None
@@ -61,11 +61,11 @@ class Connect:
             self.validmoves.remove(col)
         if self._testalignment(ind, col, lig):
             self.validmoves = []
-            self.isaligned = True
+            self.terminated = True
     
     def getmoves(self): return self.validmoves.copy()
 
-    def value(self): return 0.5 + int(self.isaligned)/2
+    def value(self): return 0.5 + int(self.terminated)/2
     
     def x(self): return self.state.copy()
     
