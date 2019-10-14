@@ -2,7 +2,7 @@
 import os
 import numpy as np
 from utils import setdata, z_test
-from manager.functions import selfplay
+from manager.functions import selfplay, play
 from artificial_intelligence.ai import AI
 from environnements import envConnect as env
 from tensorflow.python.keras.models import load_model
@@ -84,14 +84,19 @@ def evaluate_network(name1, name2, iteration=200, alpha=0.05):
     rootenv = env.Connect()
     mod1 = load_model("neural_network_models/" + name1)
     mod2 = load_model("neural_network_models/" + name2)
-    a1 = AI(itermax=300,alpha=0.3,name=name1,model=mod,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
-    a2 = AI(itermax=300,alpha=0.3,name=name2,model=mod,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    a1 = AI(itermax=300,alpha=0.3,name=name1,model=mod1,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    a2 = AI(itermax=300,alpha=0.3,name=name2,model=mod2,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
 
     #play game and collect results
     selfplay(rootenv,iteration,a1,a2,x,y,l,e)
 
     #test mod2
     return z_test(x=l,m=0,alpha=alpha,unilateral=True)
+
+def human_play():
+    rootenv = env.Connect()
+    a = AI(itermax=300,alpha=0.3,name=name1,model=mod,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    n = play(rootenv, a)
 
 def main(name="master"):
     
