@@ -1,5 +1,25 @@
 # AlphaZero Artificial Intellignence
-This project is a Python implementation of an artificial intelligence inspired by the [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0) "AlphaGo Zero cheat sheet" develloped by Google.
+An implementation of an artificial intelligence inspired by the "AlphaGo Zero cheat sheet" develloped by Google.
+
+## About The Project
+This project is an implementation of an algorythme for playing 2 players board games like tic tac toe, connect4, gomoku. Inspired by the Google [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0), the algorythme uses deep neural network trained by self-playing.
+
+## Getting Started
+### Prerequisites
+* numpy `py -m pip install numpy`
+* tensorflow `pip install --upgrade tensorflow`
+
+### Usage
+1. `from functions import *`
+2. unzip the mnist dataset in the folder data `unzip()`
+3. load dataset `x_notscaled, x, y = load_data()`
+4. plot the different unsupevized functions and get the results
+   ```sh
+   pca(x, y, x_notscaled)
+   projected = tsne(x, y, x_notscaled)
+   km_clustering(x, y)
+   ac_clustering(x, y, projected)
+   ```
 
 To start training a model for Connect game : `python run.main()`
 
