@@ -93,9 +93,10 @@ def evaluate_network(name1, name2, iteration=200, alpha=0.05):
     #test mod2
     return z_test(x=l,m=0,alpha=alpha,unilateral=True)
 
-def human_play():
+def human_play(name="master"):
     rootenv = env.Connect()
-    a = AI(itermax=300,alpha=0.3,name=name1,model=mod,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    mod = load_model("neural_network_models/" + name)
+    a = AI(itermax=300, alpha=0.3, name=name, model=mod, formula="UCB1", use_subtree=True, stochastic=True, temperature=0.3)
     n = play(rootenv, a)
 
 def main(name="master"):
