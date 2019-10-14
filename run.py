@@ -99,8 +99,7 @@ def human_play(name="master"):
     a = AI(itermax=300, alpha=0.3, name=name, model=mod, formula="UCB1", use_subtree=True, stochastic=True, temperature=0.3)
     n = play(rootenv, a)
 
-def main(name="master"):
-    
+def train(name="master"):
     new = selftraining_for_connect(name)
     if evaluate_network(name,name+"_new"):
         new.save(name)
