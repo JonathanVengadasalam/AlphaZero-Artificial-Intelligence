@@ -10,13 +10,11 @@ This project is an implementation of an algorythme for playing 2 players board g
 * tensorflow `pip install --upgrade tensorflow`
 
 ### Usage
-1. `from functions import *`
-2. unzip the mnist dataset in the folder data `unzip()`
-3. load dataset `x_notscaled, x, y = load_data()`
-4. plot the different unsupevized functions and get the results
-   ```sh
-   pca(x, y, x_notscaled)
-   projected = tsne(x, y, x_notscaled)
-   km_clustering(x, y)
-   ac_clustering(x, y, projected)
-   ```
+`from main import *`
+
+to play with provided model, run the following script from the directory: `human_play()`
+
+to train the provided model, run the following script: `train()`
+
+## Acknowledgements
+* 
