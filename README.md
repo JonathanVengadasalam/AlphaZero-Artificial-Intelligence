@@ -20,5 +20,3 @@ This project is an implementation of an algorythme for playing 2 players board g
    km_clustering(x, y)
    ac_clustering(x, y, projected)
    ```
-
-To start training a model for Connect game : `python run.main()`
