@@ -2,7 +2,7 @@
 An implementation of an artificial intelligence using deep neural network to play board game.
 
 ## About The Project
-This project is an implementation of an algorythme for playing 2 players board games like tic tac toe, connect4, gomoku. Inspired by the Google "AlphaGo Zero cheat sheet" [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0), the algorythme uses deep neural network trained by self-playing. To know more about the code description and the machine learning, see here.
+This project is an implementation of an algorythme for playing 2 players board games like tic tac toe, connect4, gomoku. Inspired by the Google "AlphaGo Zero cheat sheet" [paper](https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0), the algorythme uses deep neural network trained by self-playing. To know more about the code description and the machine learning, see [here](https://github.com/JonathanVengadasalam/AlphaZero-Artificial-Intelligence/blob/master/code_description.md).
 
 ## Getting Started
 ### Prerequisites
