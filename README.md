@@ -12,9 +12,13 @@ This project is an implementation of an algorythme for playing 2 players board g
 ### Usage
 `from main import *`
 
-to play connect4 with provided model, run the following script from the directory: `human_play()`
+to play connect4 with provided model, run the following script from the directory:
 
-to train the provided model for the game connect4, run the following script: `train()`
+`human_play()`
+
+to train the provided model for the game connect4, run the following script:
+
+`train()`
 
 ## Acknowledgements
 * [TowardsDataScience](https://towardsdatascience.com/from-scratch-implementation-of-alphazero-for-connect4-f73d4554002a)
