@@ -6,7 +6,7 @@ from manager.functions import selfplay, play
 from artificial_intelligence.ai import AI
 from environnements import envConnect as env
 from tensorflow.python.keras.models import load_model
-from neural_network_models.modelBuilder import build_model_for_connect_game
+from neural_network_models.modelBuilder import build_model
 
 def pretraining_for_connect_game(iteration=2000):
 
