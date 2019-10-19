@@ -32,10 +32,10 @@ class Connect:
     
     def clone(self):
         return Connect(playerjm = self.playerJustMoved,\
-                   state = self.state.copy(),
-                   validmoves = self.validmoves.copy(),\
-                   indexes = self.indexes.copy(),\
-                   terminated = self.terminated)
+                       state = self.state.copy(),
+                       validmoves = self.validmoves.copy(),\
+                       indexes = self.indexes.copy(),\
+                       terminated = self.terminated)
     
     def convertmove(self, col):
         res = None
