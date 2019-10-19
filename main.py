@@ -18,7 +18,7 @@ def pretraining_for_connect_game(iteration=2000):
     a3 = AI(itermax=150,alpha=0.5,use_subtree=True)
     a4 = AI(itermax=225,alpha=0.5,use_subtree=True)
     a5 = AI(itermax=300,alpha=0.5,use_subtree=True)
-    nb_ policy = env.Width
+    nb_policy = env.Width
     mod = build_model_for_connect_game("pretrained", nb_policy, env.Height, env.Width, env.Depth, 8)
     
     #play game to collect data
