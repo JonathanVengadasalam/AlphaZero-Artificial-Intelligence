@@ -31,7 +31,7 @@ class Connect:
         return s
     
     def clone(self):
-        return New(playerjm = self.playerJustMoved,\
+        return Connect(playerjm = self.playerJustMoved,\
                    state = self.state.copy(),
                    validmoves = self.validmoves.copy(),\
                    indexes = self.indexes.copy(),\
