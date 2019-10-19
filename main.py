@@ -58,7 +58,7 @@ def selftraining_for_connect(name, iteration=4000):
     x, y, l, e = [], [], [], []
     rootenv = env.Connect()
     mod = load_model("neural_network_models/" + name)
-    a = AI(itermax=300,alpha=0.3,name=name,model=mod,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    a = AI(itermax=300,alpha=0.3,name=name,model=mod,formula="ucb1",use_subtree=True,stochastic=True,temperature=0.3)
 
     #play against himself and collect data
     selfplay(rootenv,iteration,a,a,x,y,l,e)
@@ -84,8 +84,8 @@ def evaluate_network(name1, name2, iteration=200, alpha=0.05):
     rootenv = env.Connect()
     mod1 = load_model("neural_network_models/" + name1)
     mod2 = load_model("neural_network_models/" + name2)
-    a1 = AI(itermax=300,alpha=0.3,name=name1,model=mod1,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
-    a2 = AI(itermax=300,alpha=0.3,name=name2,model=mod2,formula="UCB1",use_subtree=True,stochastic=True,temperature=0.3)
+    a1 = AI(itermax=300,alpha=0.3,name=name1,model=mod1,formula="ucb1",use_subtree=True,stochastic=True,temperature=0.3)
+    a2 = AI(itermax=300,alpha=0.3,name=name2,model=mod2,formula="ucb1",use_subtree=True,stochastic=True,temperature=0.3)
 
     #play game and collect results
     selfplay(rootenv,iteration,a1,a2,x,y,l,e)
